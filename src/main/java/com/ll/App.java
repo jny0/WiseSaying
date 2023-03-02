@@ -62,6 +62,18 @@ public class App {
                 if(count ==0){
                     System.out.println((splitList[1])+"번 명언은 존재하지 않습니다.");
                 }
+            } else if (input.contains("수정")){
+                String[] splitList = input.split("id=");
+
+                for(int i = 0; i< wiseSayings.size(); i++){
+                    WiseSaying wiseSaying = wiseSayings.get(i);
+                    if(wiseSaying.getId()==Integer.valueOf(splitList[1])) {
+                        System.out.printf("명언(기존) %s \n명언 : ", wiseSaying.get명언());
+                        wiseSaying.set명언(sc.nextLine());
+                        System.out.printf("작가(기존) %s \n작가 : ", wiseSaying.get작가());
+                        wiseSaying.set작가(sc.nextLine());
+                    }
+                }
 
             }
         }
