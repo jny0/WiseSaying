@@ -10,8 +10,8 @@ public class Main {
 
         int i = 1;
         while( i>0 ){
-            String input = sc.nextLine();
             System.out.print("명령) ");
+            String input = sc.nextLine();
 
             if(input.equals("등록")){
                 System.out.print("명언 : ");
