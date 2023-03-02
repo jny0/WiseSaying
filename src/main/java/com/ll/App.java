@@ -21,6 +21,7 @@ public class App {
         WiseSayingController wiseSayingController = new WiseSayingController();
 
         while (lastWiseSayingId >= 0) {
+
             System.out.print("명령) ");
             String input = Container.getScanner().nextLine().trim();
             Rq rq = new Rq(input);
@@ -38,6 +39,8 @@ public class App {
                 case "삭제":
                     wiseSayingController.remove(rq);
                     break;
+                case "수정":
+                    wiseSayingController.modify(rq);
             }
 
 

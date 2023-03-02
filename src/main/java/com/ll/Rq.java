@@ -13,16 +13,17 @@ public class Rq {
     public Rq(String input){
         String[] inputBits = input.split("\\?", 2); // ?를 기준으로 2개까지만 나눔
 
-        actionCode = inputBits[1];
+        actionCode = inputBits[0];
         params = new HashMap<>();
-        String[] paramBits = inputBits[1].split("&");
 
         if(inputBits.length==1) return;
+
+        String[] paramBits = inputBits[1].split("&");
 
         for(String paramStr : paramBits){
             String[] paramStrBits = paramStr.split("=",2);
 
-            if(paramBits.length==1) continue;
+            if(paramStrBits.length==1) continue;
 
             String key = paramStrBits[0];
             String value = paramStrBits[1];
@@ -40,9 +41,9 @@ public class Rq {
     }
 
     public int getIntParam(String name, int defaultValue) {
-        try{
+        try {
             return Integer.parseInt(getParam(name));
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
 
         }
         return defaultValue;
