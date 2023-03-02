@@ -1,4 +1,4 @@
-package WiseSaying;
+package com.ll;
 
 import java.util.*;
 

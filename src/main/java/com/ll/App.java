@@ -1,7 +1,8 @@
-package WiseSaying;
+package com.ll;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import com.ll.wiseSaying.entity.WiseSaying;
 
 public class App {
     private final Scanner sc;
@@ -45,9 +46,19 @@ public class App {
                     System.out.printf("%d / %s / %s\n", wiseSaying.getId(), wiseSaying.get작가(), wiseSaying.get명언());
                 }
 
+            } else if (input.contains("삭제")){
+                String[] splitList = input.split("id=");
+                for(int i = 0; i< wiseSayings.size(); i++){
+                    WiseSaying wiseSaying = wiseSayings.get(i);
+                    if(wiseSaying.getId()==Integer.valueOf(splitList[1])) {
+                        wiseSayings.remove(i);
+                        System.out.println((i+1)+"번 명언이 삭제되었습니다.");
+                    }
+                }
+
+
+
             }
-
-
         }
     }
 }
