@@ -1,4 +1,4 @@
-package words;
+package WiseSaying;
 
 import java.util.*;
 
