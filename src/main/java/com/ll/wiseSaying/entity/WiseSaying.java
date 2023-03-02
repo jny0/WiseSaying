@@ -33,6 +33,6 @@ public class WiseSaying {
 
     @Override
     public String toString() {
-        return  id + " / " + 명언 +  " / " + 작가 +"\n";
+        return  id + " / " + 명언 +  " / " + 작가 ;
     }
 }
