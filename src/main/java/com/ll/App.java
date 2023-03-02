@@ -48,15 +48,20 @@ public class App {
 
             } else if (input.contains("삭제")){
                 String[] splitList = input.split("id=");
+                int count = 0;
+
                 for(int i = 0; i< wiseSayings.size(); i++){
                     WiseSaying wiseSaying = wiseSayings.get(i);
                     if(wiseSaying.getId()==Integer.valueOf(splitList[1])) {
                         wiseSayings.remove(i);
-                        System.out.println((i+1)+"번 명언이 삭제되었습니다.");
+                        System.out.println(splitList[1]+"번 명언이 삭제되었습니다.");
+                        count++;
                     }
                 }
 
-
+                if(count ==0){
+                    System.out.println((splitList[1])+"번 명언은 존재하지 않습니다.");
+                }
 
             }
         }
