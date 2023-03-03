@@ -22,8 +22,8 @@ public class WiseSayingService {
         return wiseSayingRepository.findAll();
     }
 
-    public long write(String 명언, String 작가) {
-        return wiseSayingRepository.write(명언, 작가);
+    public long write(String content, String authorName) {
+        return wiseSayingRepository.write(content, authorName);
     }
 
 
@@ -33,8 +33,8 @@ public class WiseSayingService {
     }
 
 
-    public void modify(WiseSaying wiseSaying, String 명언, String 작가) {
-        wiseSayingRepository.modify(wiseSaying, 명언, 작가);
+    public void modify(WiseSaying wiseSaying, String content, String authorName) {
+        wiseSayingRepository.modify(wiseSaying, content, authorName);
     }
 
 

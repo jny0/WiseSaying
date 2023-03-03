@@ -2,37 +2,48 @@ package com.ll.wiseSaying.entity;
 
 public class WiseSaying {
     private long id;
-    private String 명언;
-    private String 작가;
+    private String content;
+    private String authorName;
 
-    public WiseSaying (long id, String 명언, String 작가) {
+    public WiseSaying (long id, String content, String authorName) {
         this.id = id;
-        this.명언 = 명언;
-        this.작가 = 작가;
+        this.content = content;
+        this.authorName = authorName;
     }
 
     public long getId() {
         return id;
     }
 
-    public String get명언() {
-        return 명언;
+    public String getContent() {
+        return content;
     }
 
-    public String get작가() {
-        return 작가;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void set명언(String 명언) {
-        this.명언 = 명언;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public void set작가(String 작가) {
-        this.작가 = 작가;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+    public String toJson() {
+        return """
+                {
+                    "id": %d,
+                    "content": "%s",
+                    "authorName": "%s"
+                }
+                """
+                .stripIndent()
+                .formatted(id, content, authorName);
     }
 
     @Override
     public String toString() {
-        return  id + " / " + 명언 +  " / " + 작가 ;
+        return id + " / " + content + " / " + authorName;
     }
 }

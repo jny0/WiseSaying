@@ -1,49 +1,39 @@
 package com.ll.wiseSaying.repository;
 
 import com.ll.wiseSaying.entity.WiseSaying;
+import com.ll.wiseSaying.table.WiseSayingTable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WiseSayingRepository {
 
-    private final List<WiseSaying> wiseSayings;
-    private long lastWiseSayingId ;
+    private final WiseSayingTable wiseSayingTable;
 
     public WiseSayingRepository() {
-        this.wiseSayings = new ArrayList<>();
-        this.lastWiseSayingId = 0;
+        wiseSayingTable = new WiseSayingTable();
     }
 
     public List<WiseSaying> findAll() {
-        return wiseSayings;
+        return wiseSayingTable.findAll();
     }
 
     public WiseSaying findById(long id) {
-        for(WiseSaying wiseSaying : wiseSayings){
-            if(wiseSaying.getId() == id){
-                return wiseSaying;
-            }
-        }
-        return null;
+        return wiseSayingTable.findById(id);
     }
 
-    public long write(String 명언, String 작가) {
-        long id = lastWiseSayingId +1;
+    public long write(String content, String authorName) {
+        long id = wiseSayingTable.getLastId() +1;
 
-        wiseSayings.add(new WiseSaying(id, 명언, 작가));
+        WiseSaying wiseSaying = new WiseSaying(id, content, authorName);
 
-        lastWiseSayingId = id; // 증가
-
-        return id;
+        return wiseSayingTable.save(wiseSaying);
     }
 
     public void remove(WiseSaying wiseSaying) {
-        wiseSayings.remove(wiseSaying);
-
+        wiseSayingTable.remove(wiseSaying);
     }
-    public void modify(WiseSaying wiseSaying, String 명언, String 작가) {
-        wiseSaying.set명언(명언);
-        wiseSaying.set작가(작가);
+
+    public void modify(WiseSaying wiseSaying, String content, String authorName) {
+        wiseSayingTable.modify(wiseSaying, content, authorName);
     }
 }

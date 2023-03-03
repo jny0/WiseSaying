@@ -10,7 +10,7 @@ import java.util.List;
 
 public class WiseSayingController {
 
-    private WiseSayingService wiseSayingService;
+    private final WiseSayingService wiseSayingService;
 
     public WiseSayingController() {
         wiseSayingService = new WiseSayingService();
@@ -19,17 +19,18 @@ public class WiseSayingController {
 
     public void write(){
         System.out.print("명언 : ");
-        String 명언 = Container.getScanner().nextLine().trim();
+        String content = Container.getScanner().nextLine().trim();
         System.out.print("작가 : ");
-        String 작가 = Container.getScanner().nextLine().trim();
+        String authorName = Container.getScanner().nextLine().trim();
 
-        long id = wiseSayingService.write(명언, 작가);
+        long id = wiseSayingService.write(content, authorName);
 
         System.out.println(id + "번 명언이 등록되었습니다.");
     }
 
     public void list() {
         List<WiseSaying> wiseSayings = wiseSayingService.findAll();
+
         System.out.println("번호 / 작가 / 명언");
         System.out.println("-".repeat(30));
 
@@ -69,12 +70,25 @@ public class WiseSayingController {
             return;
         }
 
+        // 입력된 id와 일치하는 명언객체 찾기
         WiseSaying wiseSaying = wiseSayingService.findById(id);
 
-        System.out.printf("명언(기존) : %s \n명언 : ", wiseSaying.get명언());
-        wiseSaying.set명언(Container.getScanner().nextLine().trim());
-        System.out.printf("작가(기존) : %s \n작가 : ", wiseSaying.get작가());
-        wiseSaying.set작가(Container.getScanner().nextLine().trim());
+        if (wiseSaying == null) {
+            System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
+            return;
+        }
+
+        System.out.printf("명언(기존) : %s\n", wiseSaying.getContent());
+        System.out.print("명언 : ");
+        String content = Container.getScanner().nextLine().trim();
+
+        System.out.printf("작가(기존) : %s\n", wiseSaying.getAuthorName());
+        System.out.print("작가 : ");
+        String authorName = Container.getScanner().nextLine().trim();
+
+        wiseSayingService.modify(wiseSaying, content, authorName);
+
+        System.out.printf("%d번 명언이 수정되었습니다.\n", id);
 
         }
 }
